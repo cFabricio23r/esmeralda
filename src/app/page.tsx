@@ -3,8 +3,24 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import dayjs from "dayjs";
-import { Heart, Star } from "lucide-react";
-import messages from '@/../public/messages.json'
+import { Heart } from "lucide-react";
+import messages from '@/../public/messages.json' assert { type: 'json' };
+const typedMessages = messages as MessagesType;
+interface DayMessage {
+    greeting: string;
+    verses: string[];
+}
+
+interface TimeOfDayMessages {
+    morning: DayMessage;
+    afternoon: DayMessage;
+    night: DayMessage;
+}
+
+interface MessagesType {
+    [key: string]: TimeOfDayMessages;
+    default: TimeOfDayMessages;
+}
 
 export default function Home() {
   const [greeting, setGreeting] = useState("");
@@ -17,7 +33,7 @@ export default function Home() {
     setTimeOfDay(currentTime);
 
     const today = dayjs().format("YYYY-MM-DD");
-    const dailyMessage = messages[today] || messages.default;
+    const dailyMessage = typedMessages[today] || typedMessages.default;
     const message = dailyMessage[currentTime];
 
     setGreeting(message.greeting);
