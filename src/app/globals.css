@@ -3,6 +3,37 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Time-based colors */
+  --morning-primary: #f9d5a7;
+  --morning-secondary: #ffa45c;
+  --morning-background: linear-gradient(135deg, #ffedbc 0%, #ed4264 100%);
+  --morning-love: #ff7e5f;
+  --morning-accent: #feb47b;
+
+  --afternoon-primary: #a8e6cf;
+  --afternoon-secondary: #3498db;
+  --afternoon-background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
+  --afternoon-love: #ff5a79;
+  --afternoon-accent: #ff8a8a;
+
+  --evening-primary: #d4a5ff;
+  --evening-secondary: #7158e2;
+  --evening-background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+  --evening-love: #e83c8a;
+  --evening-accent: #c56cf0;
+
+  /* Love theme colors */
+  --love-primary: #ff5a79;
+  --love-secondary: #ff8a8a;
+  --love-tertiary: #ffb3ba;
+  --love-accent: #ffd3b6;
+  --love-light: #ffaaa5;
+
+  /* Animation speeds */
+  --animation-slow: 3s;
+  --animation-medium: 2s;
+  --animation-fast: 1s;
 }
 
 @theme inline {
@@ -20,7 +51,950 @@
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
   font-family: Arial, Helvetica, sans-serif;
+  transition: background 1s ease;
+  overflow-x: hidden;
+}
+
+/* Time-based backgrounds */
+body.time-morning {
+  background: var(--morning-background);
+  color: #333;
+}
+
+body.time-afternoon {
+  background: var(--afternoon-background);
+  color: #333;
+}
+
+body.time-evening {
+  background: var(--evening-background);
+  color: #fff;
+}
+
+/* Landing page container */
+.landing-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  padding: 2rem;
+}
+
+/* Stars background - CSS-based instead of image-based */
+.stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 1s ease;
+  overflow: hidden;
+}
+
+.time-evening .stars {
+  opacity: 0.5;
+}
+
+.stars:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(white, rgba(255,255,255,0.2) 2px, transparent 4px),
+    radial-gradient(white, rgba(255,255,255,0.15) 1px, transparent 3px),
+    radial-gradient(white, rgba(255,255,255,0.1) 2px, transparent 4px);
+  background-size: 550px 550px, 350px 350px, 250px 250px;
+  background-position: 0 0, 40px 60px, 130px 270px;
+  z-index: 1;
+}
+
+/* Twinkling effect - CSS-based */
+.twinkling {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.time-evening .twinkling {
+  opacity: 0.3;
+}
+
+.twinkling:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  background-image: 
+    radial-gradient(white, rgba(255,255,255,0.2) 1px, transparent 2px),
+    radial-gradient(white, rgba(255,255,255,0.1) 1px, transparent 1px);
+  background-size: 300px 300px, 200px 200px;
+  background-position: 0 0, 40px 60px;
+  animation: move-twink-back 200s linear infinite;
+  z-index: 1;
+}
+
+@keyframes move-twink-back {
+  from {transform: translate3d(0, 0, 0);}
+  to {transform: translate3d(-50%, -25%, 0);}
+}
+
+/* Greeting container */
+.greeting-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex: 1;
+  z-index: 2;
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Greeting frame - simplified */
+.greeting-frame {
+  position: relative;
+  padding: 2.5rem;
+  margin-bottom: 2.5rem;
+  border-radius: 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  max-width: 600px;
+  width: 100%;
+  z-index: 10;
+}
+
+.greeting-frame:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+@keyframes text-focus {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.05); }
+}
+
+/* Greeting decorations removed for simplicity */
+
+/* Greeting text - simplified with hover animation */
+.greeting-text {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.greeting-frame:hover .greeting-text {
+  transform: translateZ(10px);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.greeting {
+  font-weight: bold;
+  transition: transform 0.3s ease, text-shadow 0.3s ease;
+}
+
+.time-morning .greeting {
+  color: var(--morning-love);
+}
+
+.time-afternoon .greeting {
+  color: var(--afternoon-love);
+}
+
+.time-evening .greeting {
+  color: var(--evening-love);
+}
+
+.greeting-frame:hover .greeting {
+  transform: scale(1.05);
+}
+
+.name {
+  font-weight: normal;
+  font-style: italic;
+  font-size: 3.8rem;
+  letter-spacing: 1px;
+  transition: transform 0.3s ease, text-shadow 0.3s ease;
+}
+
+.greeting-frame:hover .name {
+  transform: scale(1.05);
+}
+
+/* Poem container and decorations */
+.poem-container {
+  position: relative;
+  margin: 3rem 0;
+  padding: 3rem;
+  border-radius: 1.5rem;
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+  max-width: 650px;
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.5s ease;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.poem-container:hover {
+  transform: scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.poem-container:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0) 0%, 
+    rgba(255, 255, 255, 0.1) 50%, 
+    rgba(255, 255, 255, 0) 100%);
+  z-index: 0;
+}
+
+.poem-decoration {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 20px;
+  z-index: 1;
+}
+
+.poem-decoration.top {
+  top: 10px;
+}
+
+.poem-decoration.bottom {
+  bottom: 10px;
+}
+
+.poem-decoration:before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, 
+    rgba(255, 255, 255, 0) 0%, 
+    rgba(255, 255, 255, 0.5) 50%, 
+    rgba(255, 255, 255, 0) 100%);
+  top: 50%;
+  left: 0;
+}
+
+.poem-decoration:after {
+  content: '❤';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 16px;
+  color: var(--love-primary);
+  transition: color 0.3s ease;
+}
+
+.time-morning .poem-decoration:after {
+  color: var(--morning-love);
+}
+
+.time-afternoon .poem-decoration:after {
+  color: var(--afternoon-love);
+}
+
+.time-evening .poem-decoration:after {
+  color: var(--evening-love);
+}
+
+.poem {
+  position: relative;
+  font-size: 1.6rem;
+  line-height: 1.7;
+  font-style: italic;
+  text-align: center;
+  color: inherit;
+  z-index: 2;
+  padding: 0.5rem;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.poem-container:hover .poem {
+  transform: translateZ(10px);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.5px;
+}
+
+.time-morning .poem-container:hover .poem {
+  color: var(--morning-love);
+}
+
+.time-afternoon .poem-container:hover .poem {
+  color: var(--afternoon-love);
+}
+
+.time-evening .poem-container:hover .poem {
+  color: var(--evening-love);
+}
+
+/* Name input */
+.name-input-container {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.name-input-container label {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.name-input {
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  font-size: 1rem;
+  color: inherit;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.name-input:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  opacity: 0.8;
+  z-index: 2;
+}
+
+/* Love-themed elements */
+.floating-elements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Heart styles */
+.heart {
+  position: absolute;
+  filter: drop-shadow(0 0 5px rgba(255, 100, 100, 0.5));
+}
+
+.heart-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.heart-inner:before,
+.heart-inner:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 52%;
+  height: 80%;
+  background: var(--love-primary);
+  border-radius: 50% 50% 0 0;
+  box-shadow: 0 0 15px rgba(255, 90, 121, 0.5);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.heart-inner:before {
+  left: 0;
+  transform: rotate(-45deg);
+  transform-origin: 100% 100%;
+}
+
+.heart-inner:after {
+  right: 0;
+  transform: rotate(45deg);
+  transform-origin: 0 100%;
+}
+
+.time-morning .heart-inner:before,
+.time-morning .heart-inner:after {
+  background: var(--morning-love);
+  box-shadow: 0 0 15px rgba(255, 126, 95, 0.6);
+}
+
+.time-afternoon .heart-inner:before,
+.time-afternoon .heart-inner:after {
+  background: var(--afternoon-love);
+  box-shadow: 0 0 15px rgba(255, 90, 121, 0.6);
+}
+
+.time-evening .heart-inner:before,
+.time-evening .heart-inner:after {
+  background: var(--evening-love);
+  box-shadow: 0 0 15px rgba(232, 60, 138, 0.6);
+}
+
+.heart-1 {
+  width: 60px;
+  height: 60px;
+  top: 15%;
+  left: 10%;
+}
+
+.heart-2 {
+  width: 40px;
+  height: 40px;
+  top: 25%;
+  right: 15%;
+}
+
+.heart-3 {
+  width: 50px;
+  height: 50px;
+  bottom: 30%;
+  left: 20%;
+}
+
+.heart-4 {
+  width: 70px;
+  height: 70px;
+  bottom: 20%;
+  right: 10%;
+}
+
+.heart-5 {
+  width: 45px;
+  height: 45px;
+  top: 50%;
+  left: 50%;
+}
+
+/* Flower styles */
+.flower {
+  position: absolute;
+  filter: drop-shadow(0 0 8px rgba(255, 200, 200, 0.6));
+}
+
+.flower-center {
+  position: absolute;
+  width: 30%;
+  height: 30%;
+  background: #ffcc00;
+  border-radius: 50%;
+  top: 35%;
+  left: 35%;
+  z-index: 2;
+  box-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+}
+
+.petals {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 5px rgba(255, 158, 170, 0.3));
+}
+
+.petal {
+  position: absolute;
+  width: 40%;
+  height: 40%;
+  background: var(--love-tertiary);
+  border-radius: 50% 50% 0 50%;
+  top: 30%;
+  left: 30%;
+  transform-origin: center center;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.time-morning .petal {
+  background: var(--morning-accent);
+}
+
+.time-afternoon .petal {
+  background: var(--afternoon-accent);
+}
+
+.time-evening .petal {
+  background: var(--evening-accent);
+}
+
+.flower:hover .petal {
+  animation: petal-wave 2s ease-in-out infinite;
+}
+
+@keyframes petal-wave {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.petal-1:hover { animation-delay: 0.1s; }
+.petal-2:hover { animation-delay: 0.2s; }
+.petal-3:hover { animation-delay: 0.3s; }
+.petal-4:hover { animation-delay: 0.4s; }
+.petal-5:hover { animation-delay: 0.5s; }
+.petal-6:hover { animation-delay: 0.6s; }
+.petal-7:hover { animation-delay: 0.7s; }
+.petal-8:hover { animation-delay: 0.8s; }
+
+.petal-1 { transform: rotate(0deg) translateX(30px); }
+.petal-2 { transform: rotate(45deg) translateX(30px); }
+.petal-3 { transform: rotate(90deg) translateX(30px); }
+.petal-4 { transform: rotate(135deg) translateX(30px); }
+.petal-5 { transform: rotate(180deg) translateX(30px); }
+.petal-6 { transform: rotate(225deg) translateX(30px); }
+.petal-7 { transform: rotate(270deg) translateX(30px); }
+.petal-8 { transform: rotate(315deg) translateX(30px); }
+
+.flower-1 {
+  width: 100px;
+  height: 100px;
+  top: 15%;
+  right: 25%;
+}
+
+.flower-2 {
+  width: 80px;
+  height: 80px;
+  bottom: 25%;
+  left: 30%;
+}
+
+/* Love letter styles */
+.love-letter {
+  position: absolute;
+  width: 80px;
+  height: 60px;
+  bottom: 40%;
+  right: 30%;
+  filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
+  z-index: 3;
+}
+
+.envelope {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.envelope:before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255,255,255,0) 0%, rgba(255,90,121,0.1) 100%);
+  z-index: 1;
+}
+
+.envelope-flap {
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  top: -25%;
+  left: 0;
+  background: #fff;
+  border-radius: 5px 5px 0 0;
+  clip-path: polygon(0 100%, 50% 50%, 100% 100%);
+  transform-origin: bottom;
+  animation: flap-wave 5s ease-in-out infinite;
+  box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.05);
+  z-index: 2;
+}
+
+.envelope-heart {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  filter: drop-shadow(0 0 5px rgba(255, 90, 121, 0.5));
+}
+
+.envelope-heart:before,
+.envelope-heart:after {
+  content: '';
+  position: absolute;
+  width: 15px;
+  height: 24px;
+  background: var(--love-primary);
+  border-radius: 15px 15px 0 0;
+  transition: background 0.3s ease;
+}
+
+.time-morning .envelope-heart:before,
+.time-morning .envelope-heart:after {
+  background: var(--morning-love);
+}
+
+.time-afternoon .envelope-heart:before,
+.time-afternoon .envelope-heart:after {
+  background: var(--afternoon-love);
+}
+
+.time-evening .envelope-heart:before,
+.time-evening .envelope-heart:after {
+  background: var(--evening-love);
+}
+
+.envelope-heart:before {
+  left: 0;
+  transform: rotate(-45deg);
+  transform-origin: 100% 100%;
+}
+
+.envelope-heart:after {
+  right: 0;
+  transform: rotate(45deg);
+  transform-origin: 0 100%;
+}
+
+/* Ribbon styles */
+.ribbon {
+  position: absolute;
+  width: 150px;
+  height: 40px;
+  top: 70%;
+  left: 10%;
+  filter: drop-shadow(0 3px 10px rgba(0, 0, 0, 0.15));
+  z-index: 3;
+  transform-style: preserve-3d;
+  perspective: 500px;
+}
+
+.ribbon-part {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, #ff758c 0%, #ff7eb3 100%);
+  border-radius: 5px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.ribbon-part:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, 
+    rgba(255, 255, 255, 0.1) 0%, 
+    rgba(255, 255, 255, 0.5) 50%, 
+    rgba(255, 255, 255, 0.1) 100%);
+  background-size: 200% 200%;
+  animation: ribbon-shine 3s linear infinite;
+}
+
+.ribbon-part:after {
+  content: '❤';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.8);
+  text-shadow: 0 0 5px rgba(255, 100, 100, 0.5);
+}
+
+.time-morning .ribbon-part {
+  background: linear-gradient(to right, #ff9a9e 0%, #fad0c4 100%);
+}
+
+.time-afternoon .ribbon-part {
+  background: linear-gradient(to right, #ff758c 0%, #ff7eb3 100%);
+}
+
+.time-evening .ribbon-part {
+  background: linear-gradient(to right, #a18cd1 0%, #fbc2eb 100%);
+}
+
+@keyframes ribbon-shine {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 200% 0%;
+  }
+}
+
+/* Animation keyframes */
+@keyframes pulse-beat {
+  0% { transform: scale(1); }
+  25% { transform: scale(1.1); }
+  50% { transform: scale(1); }
+  75% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes pulse-beat-slow {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+@keyframes pulse-beat-fast {
+  0% { transform: scale(1); }
+  30% { transform: scale(1.08); }
+  60% { transform: scale(0.98); }
+  100% { transform: scale(1); }
+}
+
+@keyframes float-rotate {
+  0% { transform: translateY(0) rotate(0); }
+  25% { transform: translateY(-15px) rotate(5deg); }
+  50% { transform: translateY(0) rotate(0); }
+  75% { transform: translateY(10px) rotate(-5deg); }
+  100% { transform: translateY(0) rotate(0); }
+}
+
+@keyframes float-bounce {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+  75% { transform: translateY(10px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes sway {
+  0% { transform: rotate(0); }
+  25% { transform: rotate(3deg); }
+  50% { transform: rotate(-2deg); }
+  75% { transform: rotate(1deg); }
+  100% { transform: rotate(0); }
+}
+
+@keyframes sway-reverse {
+  0% { transform: rotate(0); }
+  25% { transform: rotate(-3deg); }
+  50% { transform: rotate(2deg); }
+  75% { transform: rotate(-1deg); }
+  100% { transform: rotate(0); }
+}
+
+@keyframes float-letter {
+  0% { transform: translateY(0) rotate(0); }
+  25% { transform: translateY(-10px) rotate(2deg); }
+  50% { transform: translateY(0) rotate(-2deg); }
+  75% { transform: translateY(5px) rotate(1deg); }
+  100% { transform: translateY(0) rotate(0); }
+}
+
+@keyframes flap-wave {
+  0% { transform: rotateX(0); }
+  15% { transform: rotateX(25deg); }
+  30% { transform: rotateX(0); }
+  100% { transform: rotateX(0); }
+}
+
+@keyframes wave {
+  0% { transform: skewY(0) translateX(0); }
+  25% { transform: skewY(2deg) translateX(5px); }
+  50% { transform: skewY(-1deg) translateX(-3px); }
+  75% { transform: skewY(1deg) translateX(2px); }
+  100% { transform: skewY(0) translateX(0); }
+}
+
+/* Animations */
+.animate-fade-in {
+  animation: fadeIn var(--animation-medium) ease forwards;
+}
+
+.animate-fade-in-delay {
+  animation: fadeIn var(--animation-medium) ease forwards 0.5s;
+}
+
+.animate-slide-up {
+  animation: slideUp var(--animation-medium) ease forwards 0.3s;
+}
+
+/* Love-themed animations */
+.animate-pulse-beat {
+  animation: pulse-beat 2s ease-in-out infinite;
+}
+
+.animate-pulse-beat-slow {
+  animation: pulse-beat-slow 3s ease-in-out infinite;
+}
+
+.animate-pulse-beat-fast {
+  animation: pulse-beat-fast 1.5s ease-in-out infinite;
+}
+
+.animate-float-rotate {
+  animation: float-rotate 6s ease-in-out infinite;
+}
+
+.animate-float-bounce {
+  animation: float-bounce 4s ease-in-out infinite;
+}
+
+.animate-sway {
+  animation: sway 8s ease-in-out infinite;
+}
+
+.animate-sway-reverse {
+  animation: sway-reverse 9s ease-in-out infinite;
+}
+
+.animate-float-letter {
+  animation: float-letter 7s ease-in-out infinite;
+}
+
+.animate-wave {
+  animation: wave 10s ease-in-out infinite;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .greeting-container {
+    padding: 1.5rem;
+  }
+
+  .greeting-frame {
+    padding: 2rem;
+  }
+
+  .greeting-text {
+    font-size: 2.8rem;
+  }
+
+  .name {
+    font-size: 3rem;
+  }
+
+  .poem-container {
+    padding: 2rem;
+    margin: 2rem 0;
+  }
+
+  .poem {
+    font-size: 1.4rem;
+    line-height: 1.6;
+  }
+
+  .heart, .flower, .love-letter, .ribbon {
+    transform: scale(0.8);
+  }
+}
+
+@media (max-width: 480px) {
+  .greeting-container {
+    padding: 1rem;
+  }
+
+  .greeting-frame {
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .greeting-text {
+    font-size: 2.2rem;
+    gap: 0.5rem;
+  }
+
+  .name {
+    font-size: 2.5rem;
+  }
+
+  .poem-container {
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .poem {
+    font-size: 1.2rem;
+    line-height: 1.5;
+  }
+
+  .poem-decoration {
+    width: 70%;
+  }
+
+  .heart, .flower, .love-letter, .ribbon {
+    transform: scale(0.6);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes rise {
+  0% { bottom: -150px; opacity: 0; }
+  100% { bottom: 75%; opacity: 1; }
+}
+.animate-rise {
+  animation: rise 5s ease-out forwards;
 }

@@ -1,0 +1,69 @@
+{
+  "2025-06-25": {
+    "morning": {
+      "greeting": "Buenos Días, Esmeralda 💙",
+      "verses": [
+        "Que este día te sonría con la misma dulzura que tú regalas al mundo con tu presencia."
+      ]
+    },
+    "afternoon": {
+      "greeting": "Buenas Tardes, Esmeralda 🌞",
+      "verses": [
+        "Entre el sol y la brisa de esta hora, solo deseo que sientas cuánto vales, sin tener que decir mucho."
+      ]
+    },
+    "night": {
+      "greeting": "Buenas Noches, Esmeralda 🌙",
+      "verses": [
+        "Que esta noche te envuelva con tranquilidad y pensamientos bonitos que te hagan descansar en paz."
+      ]
+    }
+  },
+  "default": {
+    "morning": {
+      "greeting": "Buenos Días, Esmeralda 💙",
+      "verses": [
+        "Que cada rayo de sol te abrace con la misma ternura que yo siento al pensarte.",
+        "Hoy comienza un nuevo capítulo, y aunque no estemos juntos cada instante, me llena saber que existes.",
+        "El cielo se tiñe de azul para saludarte, como si supiera que tú eres parte de su belleza.",
+        "Despierta con calma, con luz en el alma, y con la certeza de que alguien te desea lo más bonito del día.",
+        "Que este amanecer te recuerde que hay alguien que sonríe solo con saber que tú estás bien.",
+        "Nada embellece más el día que el saber que tú también lo estás viendo, desde tu rincón especial.",
+        "Te pienso entre café y suspiros, y en cada uno de ellos deseo que hoy recibas solo lo bueno.",
+        "El día empieza con promesas, y la más constante de todas es que me encantas, Esmeralda.",
+        "Aunque nuestros caminos aún se estén dibujando, cada día me convenzo más de querer caminar contigo.",
+        "Que cada flor, cada rayo y cada canción de la mañana te hagan sonreír como tú haces conmigo."
+      ]
+    },
+    "afternoon": {
+      "greeting": "Buenas Tardes, Esmeralda 🌞",
+      "verses": [
+        "Que esta mitad del día llegue con calma y dulzura, como tus palabras suaves.",
+        "Mientras el sol cae lento, pienso en ti y en cómo tu presencia le da ritmo a mis pensamientos.",
+        "La tarde guarda silencios que me recuerdan a ti: serenos, bellos, llenos de promesa.",
+        "Aunque la rutina avance, tú brillas aparte, como un faro azul que no pasa desapercibido.",
+        "Esmeralda, ojalá esta tarde te regale paz, y que encuentres pequeños momentos para sonreír profundo.",
+        "En esta hora, entre sombra y luz, solo me nace desear que cada cosa buena también piense en ti.",
+        "Hay tardes que abrazan el alma, como tú lo haces sin siquiera estar.",
+        "Entre el ruido del día, tu recuerdo es mi calma más constante.",
+        "Si te detienes un momento, espero que sientas esta energía bonita que te mando desde mi corazón.",
+        "Todo sigue, pero tú, Esmeralda, haces que cada tarde tenga sentido más allá del tiempo."
+      ]
+    },
+    "night": {
+      "greeting": "Buenas Noches, Esmeralda 🌙",
+      "verses": [
+        "Esmeralda. Que el cielo estrellado te cobije con el mismo cuidado que quisiera darte.",
+        "Descansa, que hoy diste lo mejor de ti. Mañana será otra oportunidad para seguir brillando.",
+        "Esta noche, mientras todo calla, solo quiero que sepas que eres un pensamiento bonito que se repite en mí.",
+        "Que la luna sea testigo de mis buenos deseos hacia ti. Que sueñes en azul, y despiertes con paz.",
+        "Cerrar los ojos con tu nombre en la mente hace que el mundo se sienta menos caótico.",
+        "Te deseo un descanso tranquilo, de esos que reparan el cuerpo y acarician el alma.",
+        "Esmeralda, que cada estrella te susurre lo especial que eres para quien te piensa de lejos.",
+        "Hay belleza en el silencio de la noche, como hay belleza en ti incluso cuando callas.",
+        "Espero que la noche sea suave contigo, como yo quisiera serlo si estuviera ahí.",
+        "Duerme con la certeza de que alguien te admira profundamente, incluso en la distancia."
+      ]
+    }
+  }
+}
