@@ -19,6 +19,26 @@
       ]
     }
   },
+  "2025-06-26": {
+    "morning": {
+      "greeting": "Buenos Días, Esmeralda 💙",
+      "verses": [
+        "El sol puede salir para todos, pero brilla distinto cuando tú estás despierta. Hay algo en tu risa que le da sentido al azul del cielo."
+      ]
+    },
+    "afternoon": {
+      "greeting": "Buenas Tardes, Esmeralda 🌞",
+      "verses": [
+        "Eres de esas personas que hacen que un día normal se sienta como una fiesta improvisada. Que tu tarde sea tan única como tú."
+      ]
+    },
+    "night": {
+      "greeting": "Buenas Noches, Esmeralda 🌙",
+      "verses": [
+        "Hoy no quiero desearte dulces sueños. Quiero desearte sueños valientes, como tú. Porque hasta dormida, estoy seguro, sigues siendo un torbellino hermoso."
+      ]
+    }
+  },
   "default": {
     "morning": {
       "greeting": "Buenos Días, Esmeralda 💙",
