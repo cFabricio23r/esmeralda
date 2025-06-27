@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Saludos para Esmeralda | Una Experiencia Especial",
-  description: "Una hermosa página con saludos y poemas inspiradores en español para Esmeralda, basados en la hora del día",
+  title: "Saludos para Esmeralda",
+  description: "",
 };
 
 export default function RootLayout({
