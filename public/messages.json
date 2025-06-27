@@ -39,6 +39,46 @@
       ]
     }
   },
+  "2025-06-27": {
+    "morning": {
+      "greeting": "Buenos Días, Esmeralda 💙",
+      "verses": [
+        "Hoy es viernes, y hasta el sol parece sonreír sabiendo que tú estás en el mundo. Que tu día sea tan brillante como esa mirada tuya que me deja sin palabras."
+      ]
+    },
+    "afternoon": {
+      "greeting": "Buenas Tardes, Esmeralda 🌞",
+      "verses": [
+        "La tarde cae con ritmo de viernes, y no hay mejor melodía que tu voz contando historias como si fueran películas. Nunca dejes de brillar así."
+      ]
+    },
+    "night": {
+      "greeting": "Buenas Noches, Esmeralda 🌙",
+      "verses": [
+        "Ojalá tus sueños sean azules como tu color favorito, y tan mágicos como tú sueles ser incluso cuando no lo intentas."
+      ]
+    }
+  },
+  "2025-06-28": {
+    "morning": {
+      "greeting": "Buenos Días, Esmeralda 💙",
+      "verses": [
+        "A veces el mundo solo necesita verte sonreír para empezar a moverse con más alegría. Hoy deseo que nada te robe esa chispa."
+      ]
+    },
+    "afternoon": {
+      "greeting": "Buenas Tardes, Esmeralda 🌞",
+      "verses": [
+        "Ojalá esta tarde te regale momentos lentos, tontos y bonitos. Esos que parecen pequeños, pero te cambian el día."
+      ]
+    },
+    "night": {
+      "greeting": "Buenas Noches, Esmeralda 🌙",
+      "verses": [
+        "La noche tiene algo de ti: es intensa, hermosa y misteriosa. Que tu descanso sea tan mágico como esa luz que llevas dentro."
+      ]
+    }
+  },
   "default": {
     "morning": {
       "greeting": "Buenos Días, Esmeralda 💙",
