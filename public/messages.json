@@ -79,6 +79,26 @@
       ]
     }
   },
+  "2025-06-29": {
+    "morning": {
+      "greeting": "Buenos Días, Esmeralda 💙",
+      "verses": [
+        "Buenos días, estrella incansable. Sé que tus días han estado llenos, que el tiempo corre y apenas deja espacio para respirar… pero aun así, tú sigues brillando."
+      ]
+    },
+    "afternoon": {
+      "greeting": "Buenas Tardes, Esmeralda 🌞",
+      "verses": [
+        "Hoy solo quiero enviarte un abrazo en forma de pensamiento, de esos que no cansan, que no piden nada… solo te recuerdan lo admirable que eres."
+      ]
+    },
+    "night": {
+      "greeting": "Buenas Noches, Esmeralda 🌙",
+      "verses": [
+        "No sé qué sueños te esperan esta noche, pero deseo que se parezcan a ti: coloridos, intensos y llenos de alegría."
+      ]
+    }
+  },
   "default": {
     "morning": {
       "greeting": "Buenos Días, Esmeralda 💙",
