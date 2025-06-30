@@ -95,7 +95,27 @@
     "night": {
       "greeting": "Buenas Noches, Esmeralda 🌙",
       "verses": [
-        "No sé qué sueños te esperan esta noche, pero deseo que se parezcan a ti: coloridos, intensos y llenos de alegría."
+        "No sé qué sueños te esperan esta noche, pero deseo que se parezcan a ti: coloridos, intensos y llenos de alegría. "
+      ]
+    }
+  },
+  "2025-06-30": {
+    "morning": {
+      "greeting": "Buenos Días, Esmeralda 💙",
+      "verses": [
+        "Aunque el sueño aún pese y el día parezca largo, tú ya ganaste por el simple hecho de levantarte con esa luz que siempre llevas dentro."
+      ]
+    },
+    "afternoon": {
+      "greeting": "Buenas Tardes, Esmeralda 🌞",
+      "verses": [
+        "Tarde o temprano, el esfuerzo da frutos. Pero mientras llegan, mereces cariño, aire, una sonrisa. Ojalá este mensaje te regale un poquito de eso."
+      ]
+    },
+    "night": {
+      "greeting": "Buenas Noches, Esmeralda 🌙",
+      "verses": [
+        "Esta noche no te exijas más… permítete solo ser. Que los sueños te abracen con calma, y te despiertes sintiendo lo mucho que vales."
       ]
     }
   },
