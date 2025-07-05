@@ -119,6 +119,26 @@
       ]
     }
   },
+  "2025-07-05": {
+    "morning": {
+      "greeting": "Buenos Días, Esmeralda 💙",
+      "verses": [
+        "Hoy amanecí con esa sensación de querer repetir el azul de ayer. No por las rosas, sino porque tu presencia lo hace todo más bonito."
+      ]
+    },
+    "afternoon": {
+      "greeting": "Buenas Tardes, Esmeralda 🌞",
+      "verses": [
+        "La tarde cae suave, como si supiera que ayer dejaste una luz encendida en mi día.\nNo sé si te veré hoy… pero la idea me basta para que esta hora tenga un brillo distinto."
+      ]
+    },
+    "night": {
+      "greeting": "Buenas Noches, Esmeralda 🌙",
+      "verses": [
+        "La noche guarda secretos que uno no siempre dice. Yo solo dejo uno aquí: verte me hizo bien, y pensar en vos me ayuda a cerrar el día con una sonrisa callada."
+      ]
+    }
+  },
   "default": {
     "morning": {
       "greeting": "Buenos Días, Esmeralda 💙",
