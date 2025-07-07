@@ -3,130 +3,101 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import dayjs from "dayjs";
-import { Heart } from "lucide-react";
-import messages from '@/../public/messages.json' assert { type: 'json' };
-const typedMessages = messages as MessagesType;
-interface DayMessage {
-    greeting: string;
-    verses: string[];
-}
+import weeklyPoem from "./../../public/messages.json";
 
-interface TimeOfDayMessages {
-    morning: DayMessage;
-    afternoon: DayMessage;
-    night: DayMessage;
+function getGreeting() {
+    const hour = new Date().getHours();
+    if (hour >= 5 && hour < 12) return "Buenos días";
+    if (hour >= 12 && hour < 18) return "Buenas tardes";
+    return "Buenas noches";
 }
-
-interface MessagesType {
-    [key: string]: TimeOfDayMessages;
-    default: TimeOfDayMessages;
-}
-
 export default function Home() {
-  const [greeting, setGreeting] = useState("");
-  const [verse, setVerse] = useState("");
-  const [timeOfDay, setTimeOfDay] = useState("morning");
+    const [verse, setVerse] = useState("");
+    const [dayIndex, setDayIndex] = useState(0);
 
-  useEffect(() => {
-    const hour = dayjs().hour();
-    const currentTime = hour < 12 ? "morning" : hour < 18 ? "afternoon" : "night";
-    setTimeOfDay(currentTime);
+    useEffect(() => {
+        const today = dayjs();
+        const monday = dayjs(weeklyPoem.startDate);
+        const diff = today.diff(monday, "day");
+        const index = diff >= 0 && diff < weeklyPoem.verses.length ? diff : 0;
+        setDayIndex(index);
+        setVerse(weeklyPoem.verses[index]);
+    }, []);
 
-    const today = dayjs().format("YYYY-MM-DD");
-    const dailyMessage = typedMessages[today] || typedMessages.default;
-    const message = dailyMessage[currentTime];
+    const hour = new Date().getHours();
+    const backgroundClass = hour >= 5 && hour < 12
+        ? "from-sky-300 via-blue-400 to-indigo-700"
+        : hour >= 12 && hour < 18
+            ? "from-sky-300 via-blue-400 to-indigo-700"
+            : "from-slate-800 via-blue-900 to-black";
 
-    setGreeting(message.greeting);
-    const randomVerse = message.verses[Math.floor(Math.random() * message.verses.length)];
-    setVerse(randomVerse);
-  }, []);
-
-  const getSkyGradient = () => {
-    switch (timeOfDay) {
-      case "morning":
-        return "from-sky-400 via-blue-400 to-blue-800";
-      case "afternoon":
-        return "from-sky-400 via-blue-400 to-blue-800";
-      case "night":
-      default:
-        return "from-gray-900 via-indigo-900 to-black";
-    }
-  };
-
-  const getIcon = () => {
-    if (timeOfDay === "morning") {
-      return <div className="w-32 h-32 bg-yellow-400 rounded-full shadow-2xl animate-rise absolute bottom-10 left-1/2 transform -translate-x-1/2"></div>;
-    } else if (timeOfDay === "afternoon") {
-      return <div className="w-32 h-32 bg-yellow-400 rounded-full shadow-2xl animate-rise absolute bottom-10 left-1/2 transform -translate-x-1/2"></div>;
-    } else if (timeOfDay === "night") {
-      return <div className="w-24 h-24 bg-white rounded-full shadow-2xl animate-rise opacity-80 absolute bottom-10 left-1/2 transform -translate-x-1/2"></div>;
-    }
-    return null;
-  };
-
-  const decorativeParticles = Array.from({ length: 12 }).map((_, i) => {
-    const isMorning = timeOfDay === "morning";
     return (
-        <div
-            key={i}
-            className={`absolute ${isMorning ? 'bg-blue-300' : 'bg-white'} opacity-90 rounded-full blur-sm animate-float animate-drift ${!isMorning ? 'animate-twinkle' : ''}`}
-            style={{
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              width: Math.floor(2 + Math.random() * 3)*4,
-              height: Math.floor(2 + Math.random() * 3)*4,
-              animationDuration: `${3 + Math.random() * 3}s`
-            }}
-        >.</div>
-    );
-  });
+        <div className={`min-h-screen bg-gradient-to-b ${backgroundClass} text-white flex flex-col items-center justify-center px-6 py-12 text-center relative overflow-hidden`}>
 
-  const copyVerse = () => {
-    navigator.clipboard.writeText(verse);
-    alert("Verso copiado 💙");
-  };
+            <div className="absolute inset-0 z-0 pointer-events-none opacity-10">
+                {[...Array(20)].map((_, i) => (
+                    <div
+                        key={i}
+                        className={`absolute w-${2 + Math.floor(Math.random() * 3)} h-${2 + Math.floor(Math.random() * 3)} bg-white rounded-full blur-sm animate-twinkle`}
+                        style={{
+                            top: `${Math.random() * 100}%`,
+                            left: `${Math.random() * 100}%`,
+                            animationDuration: `${2 + Math.random() * 2}s`
+                        }}
+                    />
+                ))}
+            </div>
 
-  return (
-      <div className={`min-h-screen bg-gradient-to-b ${getSkyGradient()} text-white flex flex-col items-center justify-center px-6 py-12 text-center relative overflow-hidden`}>
-        {getIcon()}
+            <motion.div
+                className="relative z-10 max-w-2xl space-y-10"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1 }}
+            >
+                <div className="text-center space-y-4">
+                    <motion.h1
+                        className="text-3xl md:text-4xl font-semibold text-blue-100"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.2 }}
+                    >
+                        {getGreeting()}, Esmeralda 💙
+                    </motion.h1>
 
-        <div className="absolute inset-0 z-0 pointer-events-none">
-          {decorativeParticles}
+                    <motion.h2
+                        className="text-sm text-blue-200 tracking-widest uppercase"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.3 }}
+                    >
+                        {weeklyPoem.theme}
+                    </motion.h2>
+                </div>
+
+                <motion.div
+                    className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/20 shadow-lg"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.6, duration: 1 }}
+                >
+                    <p className="text-lg md:text-xl font-light leading-relaxed text-white italic">
+                        “{verse}”
+                    </p>
+                </motion.div>
+
+                <motion.div
+                    className="text-sm text-white/60"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1 }}
+                >
+                    <p>Una pequeña pieza de algo más grande, que se va revelando con el tiempo. {`${dayIndex + 1}/7`}</p>
+                </motion.div>
+            </motion.div>
+
+            <footer className="absolute bottom-4 z-10 text-xs text-white/60">
+                Hecho con cariño 💙 por alguien que piensa en ti
+            </footer>
         </div>
-
-        <motion.div
-            className="relative z-10 max-w-xl space-y-14"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-        >
-          <motion.h1
-              className="text-4xl md:text-5xl font-bold drop-shadow-md"
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 1 }}
-          >
-            {greeting}
-          </motion.h1>
-
-          <motion.div
-              onClick={copyVerse}
-              className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/20 shadow-lg"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8, duration: 1 }}
-          >
-            <Heart className="absolute -top-3 -right-3 w-6 h-6 text-blue-700 drop-shadow" />
-            <p className="text-lg md:text-xl font-light leading-relaxed text-white/90">
-              “{verse}”
-            </p>
-          </motion.div>
-
-        </motion.div>
-
-        <footer className="absolute bottom-4 z-10 text-sm text-white/70">
-          Hecho con cariño 💙 por alguien que piensa en ti
-        </footer>
-      </div>
-  );
+    );
 }
